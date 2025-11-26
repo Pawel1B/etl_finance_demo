@@ -2,6 +2,7 @@ import requests
 from const import DataDownloadSource
 from http import HTTPStatus
 import logging
+logging.basicConfig(level=logging.INFO)
 
 
 class DataDownloader:

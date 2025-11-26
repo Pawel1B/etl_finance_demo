@@ -1,0 +1,5 @@
+ipython-sql
+pandas
+db-sqlite3
+requests
+matplotlib

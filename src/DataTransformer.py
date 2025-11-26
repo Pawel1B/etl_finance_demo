@@ -1,6 +1,7 @@
 from const import OHLC_COLUMN_NAMES
 from io import StringIO
 import logging
+logging.basicConfig(level=logging.INFO)
 import pandas as pd
 
 class DataTransformer:
