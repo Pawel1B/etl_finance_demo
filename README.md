@@ -1,2 +1,35 @@
-# etl_finance_demo
-Training project on etl with financial data
+# Financial Data ETL and Forecasting
+
+This project demonstrates an ETL pipeline for financial stock data, including data validation, exploratory data analysis (EDA), and forecasting using SARIMAX and XGBoost.
+
+## Problem Statement
+Financial data comes from multiple sources and can be noisy, incomplete, or inconsistent. Analysts face challenges in cleaning, storing, and deriving insights from such data.
+
+## Proposed solution
+
+- Download stock data via API with redundant checks
+- Clean and validate data using Pandas
+- Store processed data in SQL database
+- Perform EDA and feature engineering
+- Train forecasting models (SARIMAX, XGBoost) and evaluate performance
+
+## Features
+- Download financial stock data via API with validation checks
+- ETL pipeline using Pandas
+- Data cleaning and validation
+- Exploratory Data Analysis (EDA)
+- SQL database as structured storage
+- Feature engineering
+- Model training and forecasting (SARIMAX, XGBoost)
+
+## Installation & Usage
+
+TODO
+
+## Contributing
+
+Contributions available after previous contact.
+
+## License
+
+CC0 1.0 Universal
