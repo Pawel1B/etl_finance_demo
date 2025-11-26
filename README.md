@@ -7,14 +7,14 @@ Financial data comes from multiple sources and can be noisy, incomplete, or inco
 
 ## Proposed solution
 
-- Download stock data via API with redundant checks
+- Download stock data via API or other viable and legal means
 - Clean and validate data using Pandas
 - Store processed data in SQL database
 - Perform EDA and feature engineering
 - Train forecasting models (SARIMAX, XGBoost) and evaluate performance
 
 ## Features
-- Download financial stock data via API with validation checks
+- Download financial stock data via API or other viable and legal means
 - ETL pipeline using Pandas
 - Data cleaning and validation
 - Exploratory Data Analysis (EDA)
