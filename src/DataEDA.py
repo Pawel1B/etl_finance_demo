@@ -1,13 +1,14 @@
 import pandas as pd
 from matplotlib import pyplot as plt
 import sqlite3
-import datetime
+from src.FeatureEngineer import FeatureEngineer
 
 
 
 class DataEDA():
     def __init__(self, conn: sqlite3.Connection, ticker: str, ticker_timeline: list|None=None):
         self.df = self._load_ticker(conn, ticker, ticker_timeline)
+        self._featureEngineer = FeatureEngineer(self.df)
 
     def _load_ticker(self, conn: sqlite3.Connection, ticker: str, ticker_timeline:list|None) -> pd.DataFrame:
         if ticker_timeline is None:
@@ -29,6 +30,12 @@ class DataEDA():
             ax[idx].plot(self.df[variable])
             figs.show()
 
-    #NOTE features can be added via name of feature or feature expression, for that standardised format is required, swap dataframe to class may solve some design issues
-    def add_features(self, feature_name: str, feature_expr: function = ...):
-        ...
+    def plot_feature(self, feature: str, ticker_timeline: list|None=None):
+        if ticker_timeline is None:
+            plt.figure(figsize=(14,7))
+            plt.plot(self.df.index, self.df[feature])
+            plt.show()
+
+    @property
+    def featureEngineer(self) -> FeatureEngineer:
+        return self._featureEngineer
