@@ -2,6 +2,7 @@ from const import DatabaseType
 import pandas as pd
 import sqlite3
 import logging
+logging.basicConfig(level=logging.INFO)
 
 
 class DataStorage:

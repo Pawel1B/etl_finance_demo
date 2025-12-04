@@ -1,0 +1,4 @@
+etl_finance_project
+__pycache__/
+*.pyc
+*.db
