@@ -24,7 +24,7 @@ class FeatureEngineer:
         self.df[feature_name] = np.log(self.df["close"]) - np.log(self.df["close"].shift(period))
         self.df[feature_name] = self.df[feature_name]
 
-    def add_rolling_mean(self, feature_name: str = "rolling_mean", period: int = 4):
+    def add_Simple_Moving_Average(self, feature_name: str = "SMA", period: int = 4):
         self.df[feature_name] = self.df["close"].rolling(period).mean()
 
     def add_rolling_volume(self, feature_name: str = "rolling_volume", period: int = 4):
@@ -40,6 +40,31 @@ class FeatureEngineer:
 
     def add_rate_of_change(self, feature_name: str = "ROC", period:int = 1):
         self.df[feature_name] = (self.df["close"] / self.df["close"].shift(period)) - 1
+
+    def add_rolling_volatility(self, feature_name: str = "rolling_volatility", period:int = 21):
+        self.df[feature_name] = self.df["close"].pct_change().rolling(window=period).std()
+
+    def add_rolling_Exponentional_Moving_Averages(self, feature_name: str = "EMA", period:int = 4):
+        self.df[feature_name] = self.df["close"].emw(span=period, adjust=False).mean()
+
+    def add_MACD(self):
+        ema_12 = self.df["close"].emw(span=12, adjust=False).mean()
+        ema_26 = self.df["close"].emw(span=26, adjust=False).mean()
+
+        self.df["macd"] = ema_12 - ema_26
+        self.df["macd_signal"] = self.df["macd"].ewm(span=9, adjust=False).mean()
+        self.df["macd_hist"] = self.df["macd"] - self.df["macd_signal"]
+
+    def add_RSI(self, feature_name: str = "RSI", period:int = 14):
+        delta = self.df["close"].diff()
+        gain = delta.clip(lower=0)
+        loss = -delta.clip(upper=0)
+        avg_gain = gain.rolling(window=period).mean()
+        avg_loss = loss.rolling(window=period).mean()
+
+        rs = avg_gain / avg_loss
+        self.df[feature_name] = 100 - (100 / (1 + rs))
+
 
     # utility
     def handle_nan_values(self, method: str = "dropna"):
