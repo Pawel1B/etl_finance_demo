@@ -1,7 +1,6 @@
 from enum import Enum
-from datetime import datetime
 
-class DataDownloadSource(Enum):
+class DATA_DOWNLOAD_SOURCE(Enum):
     STOOQ_PL = "stooq"
     ...
 
