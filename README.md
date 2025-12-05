@@ -23,8 +23,22 @@ Financial data comes from multiple sources and can be noisy, incomplete, or inco
 - Model training and forecasting (SARIMAX, XGBoost)
 
 ## Installation & Usage
+### Requirements:
+- Python >= 3.11
+- supported db: SQLite
+### Installation
+```bash
+pip install -r .\requirements.txt
+```
+### Usage
+- Sample usage available in analysis.ipynb
+- Sample data etl into sqlite db:
+```bash
+python transform.py
+```
 
-TODO
+## Resources
+
 
 ## Contributing
 
