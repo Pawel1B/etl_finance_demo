@@ -1,0 +1,10 @@
+database:
+  sqlite:
+    path: SQLite.db
+
+  postgres:
+    host: localhost
+    dbname: etl_finance_demo
+    user: postgres
+    password: POSTGRESQL_PASSWORD
+    port: 5432
