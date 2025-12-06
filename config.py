@@ -18,7 +18,8 @@ class PostgresConfig(DatabaseConfig):
     port: int
 
 class RedisConfig(DatabaseConfig):
-    ...
+    host: str
+    port: int
 
 def get_config(databaseType: DATABASE_TYPE) -> DatabaseConfig:
     with open("config.yaml", "r") as f:
@@ -33,6 +34,6 @@ def get_config(databaseType: DATABASE_TYPE) -> DatabaseConfig:
             config.password = os.getenv(config.password)
             return config
         case DATABASE_TYPE.REDIS:
-            ...
+            return RedisConfig(**config["database"]["redis"])
         case _:
             raise ValueError(f"Unsupported Database type: {databaseType}")

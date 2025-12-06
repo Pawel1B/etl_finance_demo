@@ -7,3 +7,4 @@ ipykernel
 sqlalchemy
 python-dotenv
 pyyaml
+redis
