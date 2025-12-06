@@ -1,4 +1,4 @@
-from const import DatabaseType
+from const import DATABASE_TYPE
 import pandas as pd
 import sqlite3
 from src.storage.Storage import Storage
@@ -10,7 +10,7 @@ class StorageSQLite(Storage):
 
     def data_load(self, ticker_name: str) -> pd.DataFrame:
         try:
-            db_file_name = f"{DatabaseType.SQLITE.value}.db"
+            db_file_name = f"{DATABASE_TYPE.SQLITE.value}.db"
             conn = sqlite3.connect(db_file_name)
             query = f"SELECT * FROM {ticker_name}"
             df = pd.read_sql(query, conn)
@@ -26,7 +26,7 @@ class StorageSQLite(Storage):
 
     def data_save(self, ticker_name: str, data: pd.DataFrame) -> None:
         try:
-            db_file_name = f"{DatabaseType.SQLITE.value}.db"
+            db_file_name = f"{DATABASE_TYPE.SQLITE.value}.db"
             conn = sqlite3.connect(db_file_name)
             data.to_sql(ticker_name, conn, if_exists='replace', index=True)
             logging.info(f"Dataframe saved to database")

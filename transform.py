@@ -1,9 +1,9 @@
-from const import DATA_DOWNLOAD_SOURCE, DatabaseType
+from const import DATA_DOWNLOAD_SOURCE, DATABASE_TYPE
 from src.DataDownloader import DataDownloader
 from src.DataTransformer import DataTransformer
 from src.storage.storage_factory import get_storage
 
-def download_transform_load(ticker: str, source: DATA_DOWNLOAD_SOURCE, databaseType: DatabaseType) -> None:
+def download_transform_load(ticker: str, source: DATA_DOWNLOAD_SOURCE, databaseType: DATABASE_TYPE) -> None:
     download = DataDownloader(source)
     data = download.get_single_stock(ticker)
     transform = DataTransformer()
@@ -13,4 +13,4 @@ def download_transform_load(ticker: str, source: DATA_DOWNLOAD_SOURCE, databaseT
     storage_inst.data_save(ticker, df)
 
 if __name__ == "__main__":
-    download_transform_load(ticker="cla", source=DATA_DOWNLOAD_SOURCE.STOOQ_PL, databaseType = DatabaseType.SQLITE)
+    download_transform_load(ticker="cla", source=DATA_DOWNLOAD_SOURCE.STOOQ_PL, databaseType = DATABASE_TYPE.SQLITE)
