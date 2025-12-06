@@ -4,3 +4,7 @@ db-sqlite3
 requests
 matplotlib
 ipykernel
+sqlalchemy
+python-dotenv
+pyyaml
+redis

@@ -1,26 +1,24 @@
 import pandas as pd
 from matplotlib import pyplot as plt
-import sqlite3
+from src.storage.Storage import Storage
 from src.FeatureEngineer import FeatureEngineer
 from datetime import datetime
 
 
 
 class DataEDA():
-    def __init__(self, conn: sqlite3.Connection, ticker: str, ticker_timeline: list|None=None) -> None:
-        self.df = self._load_ticker(conn, ticker, ticker_timeline)
+    def __init__(self, data_storage: Storage, ticker: str) -> None:
+        self.df = self._load_ticker(data_storage, ticker)
         self._featureEngineer = FeatureEngineer(self.df)
 
-    def _load_ticker(self, conn: sqlite3.Connection, ticker: str, time_start: datetime|None = None, time_stop: datetime|None = None) -> pd.DataFrame:
-        if time_start is None and time_stop is None:
-            query = f"SELECT * FROM {ticker}"
+    def _load_ticker(self, data_storage: Storage, ticker: str) -> pd.DataFrame:
+        return data_storage.data_load(ticker)
+
+    def set_ticker_timeline(self, time_start: datetime, time_stop: datetime|None = None):
+        if time_stop is None:
+            self.df = self.df[self.df.index > time_start]
         else:
-            query = f"SELECT * FROM {ticker} WHERE date BETWEEN {time_start} AND {time_stop}"
-        df = pd.read_sql(query, conn)
-        df["date"] = pd.to_datetime(df["date"])
-        df = df.set_index(df["date"])
-        df = df.drop(columns="date")
-        return df
+            self.df = self.df[self.df.index > time_start and self.df.index < time_stop]
 
     def get_ticker_dataframe(self) -> pd.DataFrame:
         return self.df
