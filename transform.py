@@ -1,6 +1,6 @@
 from const import DATA_DOWNLOAD_SOURCE, DATABASE_TYPE
-from src.DataDownloader import DataDownloader
-from src.DataTransformer import DataTransformer
+from src.preprocessing.DataDownloader import DataDownloader
+from src.preprocessing.DataTransformer import DataTransformer
 from src.storage.storage_factory import get_storage
 
 def download_transform_load(ticker: str, source: DATA_DOWNLOAD_SOURCE, databaseType: DATABASE_TYPE) -> None:

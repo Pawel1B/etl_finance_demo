@@ -65,6 +65,8 @@ class FeatureEngineer:
         rs = avg_gain / avg_loss
         self.df[feature_name] = 100 - (100 / (1 + rs))
 
+    def add_std(self, feature_name: str = "std", period:int = 14) -> None:
+        self.df[feature_name] = self.df["close"].rolling(period).std()
 
     # utility
     def handle_nan_values(self, method: str = "dropna") -> None:
