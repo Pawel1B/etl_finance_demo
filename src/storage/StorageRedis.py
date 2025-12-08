@@ -1,11 +1,13 @@
 import redis
 import pandas as pd
 from src.storage.Storage import Storage
+from config import RedisConfig
 import logging
 logging.basicConfig(level=logging.INFO)
 
 
-class StorageRedis(Storage):
+class StorageRedis(Storage[RedisConfig]):
+
     def data_load(self, ticker_name: str) -> pd.DataFrame:
         try:
             r = redis.Redis(host=self.config.host, port=self.config.port)

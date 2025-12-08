@@ -1,11 +1,12 @@
 import pandas as pd
 import sqlite3
 from src.storage.Storage import Storage
+from config import SQLiteConfig
 import logging
 logging.basicConfig(level=logging.INFO)
 
 
-class StorageSQLite(Storage):
+class StorageSQLite(Storage[SQLiteConfig]):
 
     def data_load(self, ticker_name: str) -> pd.DataFrame:
         try:

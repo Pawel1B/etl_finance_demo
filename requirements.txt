@@ -1,10 +1,13 @@
 ipython-sql
 pandas
+pandas-stubs
 db-sqlite3
 requests
+types-requests
 matplotlib
 ipykernel
 sqlalchemy
 python-dotenv
 pyyaml
+types-PyYAML
 redis

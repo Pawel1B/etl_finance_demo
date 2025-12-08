@@ -31,7 +31,10 @@ def get_config(databaseType: DATABASE_TYPE) -> DatabaseConfig:
         case DATABASE_TYPE.POSTGRESQL:
             load_dotenv()
             config = PostgresConfig(**config["database"]["postgres"])
-            config.password = os.getenv(config.password)
+            password = os.getenv(config.password)
+            if password is None:
+                raise ValueError("Password variable not added")
+            config.password = password
             return config
         case DATABASE_TYPE.REDIS:
             return RedisConfig(**config["database"]["redis"])

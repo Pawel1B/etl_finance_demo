@@ -3,27 +3,28 @@ from matplotlib import pyplot as plt
 from src.storage.Storage import Storage
 from src.eda.FeatureEngineer import FeatureEngineer
 from datetime import datetime
+from typing import Any
 
 
 
 class DataEDA():
-    def __init__(self, data_storage: Storage, ticker: str) -> None:
+    def __init__(self, data_storage: Storage[Any], ticker: str) -> None:
         self.df = self._load_ticker(data_storage, ticker)
         self._featureEngineer = FeatureEngineer(self.df)
 
-    def _load_ticker(self, data_storage: Storage, ticker: str) -> pd.DataFrame:
+    def _load_ticker(self, data_storage: Storage[Any], ticker: str) -> pd.DataFrame:
         return data_storage.data_load(ticker)
 
-    def _get_df_time_mask(self, time_start: datetime|None = None, time_stop: datetime|None = None) -> pd.Series:
+    def _get_df_time_mask(self, time_start: datetime|None = None, time_stop: datetime|None = None) -> pd.Series[bool]:
         if time_start is None and time_stop is None:
-            mask = pd.Series(True, index=self.df.index)
+            mask: pd.Series[bool] = pd.Series(True, index=self.df.index)
         elif time_stop is None:
-            mask = self.df.index > time_start
+            mask = pd.Series(self.df.index > time_start, dtype=bool)
         else:
-            mask = (self.df.index > time_start) & (self.df.index < time_stop)
+            mask = pd.Series((self.df.index > time_start) & (self.df.index < time_stop), dtype=bool)
         return mask
 
-    def set_ticker_timeline(self, time_start: datetime, time_stop: datetime|None = None):
+    def set_ticker_timeline(self, time_start: datetime, time_stop: datetime|None = None) -> None:
         if time_stop is None:
             self.df = self.df[self.df.index > time_start]
         else:
