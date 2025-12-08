@@ -1,10 +1,14 @@
 from config import DatabaseConfig
 import pandas as pd
 from abc import ABC, abstractmethod
+from typing import Generic, TypeVar
 
-class Storage(ABC):
+D = TypeVar("D", bound=DatabaseConfig)
+
+class Storage(ABC, Generic[D]):
     """Basic representation of data Storage"""
-    def __init__(self, config: DatabaseConfig) -> None:
+
+    def __init__(self, config: D) -> None:
         self.config = config
 
     @abstractmethod

@@ -2,11 +2,12 @@ import pandas as pd
 from urllib.parse import quote_plus
 from sqlalchemy import create_engine
 from src.storage.Storage import Storage
+from config import PostgresConfig
 import logging
 logging.basicConfig(level=logging.INFO)
 
 
-class StoragePostgreSQL(Storage):
+class StoragePostgreSQL(Storage[PostgresConfig]):
 
     def data_load(self, ticker_name: str) -> pd.DataFrame:
         try:
@@ -33,7 +34,7 @@ class StoragePostgreSQL(Storage):
         except Exception as e:
             raise RuntimeError(f"Cant commit data to PostgreSQL due to: {e}")
 
-    def _get_sqlalchemy_engine_url(self):
+    def _get_sqlalchemy_engine_url(self) -> str:
         return "postgresql+psycopg2://{user}:{password}@{host}:{port}/{dbname}".format(
             user = quote_plus(self.config.user),
             password = quote_plus(self.config.password),
