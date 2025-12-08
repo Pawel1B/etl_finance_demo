@@ -1,5 +1,6 @@
 import redis
 import pandas as pd
+import pickle
 from src.storage.Storage import Storage
 from config import RedisConfig
 import logging
@@ -11,7 +12,8 @@ class StorageRedis(Storage[RedisConfig]):
     def data_load(self, ticker_name: str) -> pd.DataFrame:
         try:
             r = redis.Redis(host=self.config.host, port=self.config.port)
-            df = pd.DataFrame(r.get(ticker_name))
+            data = r.get(ticker_name)
+            df: pd.DataFrame = pickle.loads(data)
             df["date"] = pd.to_datetime(df["date"])
             df = df.set_index(df["date"])
             df = df.drop(columns="date")
@@ -24,6 +26,7 @@ class StorageRedis(Storage[RedisConfig]):
     def data_save(self, ticker_name: str, data: pd.DataFrame) -> None:
         try:
             r = redis.Redis(host=self.config.host, port=self.config.port)
+            data = pickle.dumps(data)
             r.set(ticker_name, data)
 
             logging.info(f"Dataframe saved to memory")
