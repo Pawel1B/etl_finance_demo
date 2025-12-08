@@ -8,9 +8,11 @@ class FeatureEngineer:
 
     # stationary
     def add_spread(self) -> None:
+        """spread is difference between high and low value of daily trades"""
         self.df["spread"] = self.df["high"] - self.df["low"]
 
     def add_price_change(self) -> None:
+        """price_change is difference between close and open value of daily trades"""
         self.df["price_change"] = self.df["close"] - self.df["open"]
 
     def add_relative_spread(self) -> None:
