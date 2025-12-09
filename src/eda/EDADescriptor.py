@@ -4,7 +4,7 @@ import json
 
 class EDADescriptor:
     def __init__(self):
-        self.history = []
+        self.history = {}
         with open("metric_descriptions.json", "r") as f:
             self.descriptions = json.load(f)
 
@@ -19,9 +19,6 @@ class EDADescriptor:
             result = method(*args, **kwargs)
             if method.__name__ in self.descriptions:
                 doc = self.descriptions[method.__name__]
-                self.history.append({
-                    "method": method.__name__,
-                    "description": doc
-                })
+                self.history[method.__name__] = doc
             return result
         return wrapper
