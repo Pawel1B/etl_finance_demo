@@ -1,0 +1,53 @@
+
+add_spread:
+    description: |
+        TODO
+add_price_change:
+    description: |
+        TODO
+add_relative_spread:
+    description: |
+        TODO
+add_returns:
+    description: |
+        TODO
+add_log_returns:
+    description: |
+        TODO
+add_Simple_Moving_Average:
+    description: |
+        TODO
+add_rolling_volume:
+    description: |
+        TODO
+add_rolling_volume_zscore:
+    description: |
+        TODO
+add_momentum:
+    description: |
+        TODO
+add_rate_of_change:
+    description: |
+        TODO
+add_rolling_volatility:
+    description: |
+        TODO
+add_rolling_Exponentional_Moving_Averages:
+    description: |
+        TODO
+add_MACD:
+    description: |
+        Moving Average Convergence Divergence (MACD) compares short-term and long-term momentum.
+        Crossovers between MACD and the signal line are often used to identify trend changes.
+add_RSI:
+    description: |
+        Relative Strength Index (RSI) measures momentum.
+        Values above 70 often indicate overbought conditions.
+        Values below 30 often indicate oversold conditions.
+        Overbought conditions indicate that ticker rose too quickly and there might be price pullback or reversal. Indicator of potential sale oportunity.
+        Oversold conditions indicate that ticker has fallen too quickly and there might be upward price reversal. Indicator of potential buy oportunity.
+add_std:
+    description: |
+general_description:
+    description: |
+        This metric is highly dependant on ticker internal situation and general marcet and cant be evaluated as single purpuse indicator.
