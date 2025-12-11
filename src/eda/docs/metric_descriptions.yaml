@@ -1,40 +1,77 @@
 
 add_spread:
     description: |
-        TODO
+        Spread measures the difference between the high and low price.
+        Large spreads indicate high intraday volatility and uncertainty.
+        Small spreads suggest stable trading and low volatility.
+        Wide spreads can signal potential breakout conditions or heightened risk. Narrow spreads often occur during consolidation phases.
 add_price_change:
     description: |
-        TODO
+        Price Change tracks the difference between the current price and a previous price.
+        Positive values show upward momentum.
+        Negative values show downward momentum.
+        Large changes may indicate strong trends or potential reversals
 add_relative_spread:
     description: |
-        TODO
+        Relative Spread normalizes the daily spread by dividing it by the closing price.
+        High relative spread means the day’s price range was large compared to the closing level, signaling volatility.
+        Low relative spread means the day’s price range was small relative to the close, signaling stability.
+        Use relative spread to compare volatility across different assets or timeframes, since it adjusts for price scale.
 add_returns:
     description: |
-        TODO
+        Rolling Returns measure the average percentage change in price over a moving window.
+        Consistently positive rolling returns indicate sustained upward performance over the chosen period.
+        Consistently negative rolling returns indicate sustained downward performance.
+        Sharp swings in rolling returns highlight unstable performance and potential regime shifts.
+        Use rolling returns to evaluate whether gains/losses are persistent or just short-term noise.
 add_log_returns:
     description: |
-        TODO
+        Positive log return → price increased relative to prior period.
+        Negative log return → price decreased.
+        Large absolute log return → high volatility or unusual price movement.
+        Rolling log returns → highlight persistence of gains/losses and help detect regime shifts.
 add_Simple_Moving_Average:
     description: |
-        TODO
+        SMA smooths price data by averaging over a set period.
+        Price above SMA suggests bullish trend.
+        Price below SMA suggests bearish trend.
+        Longer SMAs show long-term trends; shorter SMAs highlight short-term moves.
+        Check corssections of different SMA periods.
 add_rolling_volume:
     description: |
-        TODO
+        Rolling Volume tracks average trading volume over a moving window.
+        Increasing rolling volume signals growing interest or momentum.
+        Decreasing rolling volume suggests fading participation.
 add_rolling_volume_zscore:
     description: |
-        TODO
+        Rolling Volume Z-Score standardizes volume relative to its mean.
+        High positive scores indicate unusually high volume (possible breakout).
+        Low negative scores indicate unusually low volume (possible consolidation).
+        Useful for spotting abnormal trading activity
 add_momentum:
     description: |
-        TODO
+        Momentum measures the speed of price changes.
+        High momentum suggests strong trend continuation.
+        Low or negative momentum suggests weakening trend or reversal.
+        Often used to confirm strength of rallies or declines
 add_rate_of_change:
     description: |
-        TODO
+        ROC measures percentage change in price compared to past periods.
+        Positive ROC indicates upward momentum.
+        Negative ROC indicates downward momentum.
+        Extreme values may signal overbought or oversold conditions
 add_rolling_volatility:
     description: |
-        TODO
+        Rolling Volatility measures variability of returns over a moving window.
+        High volatility signals risk and potential large price swings.
+        Low volatility suggests stability and reduced trading opportunities.
+        Useful for risk management and timing entries/exits
 add_rolling_Exponentional_Moving_Averages:
     description: |
-        TODO
+        EMA emphasizes recent prices more than older ones.
+        Price above EMA suggests bullish momentum.
+        Price below EMA suggests bearish momentum.
+        Rolling EMAs adapt quickly to market changes, making them ideal for short-term trading
 add_MACD:
     description: |
         Moving Average Convergence Divergence (MACD) compares short-term and long-term momentum.
@@ -48,6 +85,9 @@ add_RSI:
         Oversold conditions indicate that ticker has fallen too quickly and there might be upward price reversal. Indicator of potential buy oportunity.
 add_std:
     description: |
+        Shows spread of close value from their average over set period.
+        High values indicate high volatility and risk (5-10)
+        Low values indicate low volatility and risk (1-2)
 general_description:
     description: |
         This metric is highly dependant on ticker internal situation and general marcet and cant be evaluated as single purpuse indicator.
