@@ -6,7 +6,6 @@ from datetime import datetime
 from typing import Any
 
 
-
 class DataEDA():
     def __init__(self, data_storage: Storage[Any], ticker: str) -> None:
         self.df = self._load_ticker(data_storage, ticker)
@@ -15,13 +14,13 @@ class DataEDA():
     def _load_ticker(self, data_storage: Storage[Any], ticker: str) -> pd.DataFrame:
         return data_storage.data_load(ticker)
 
-    def _get_df_time_mask(self, time_start: datetime|None = None, time_stop: datetime|None = None) -> pd.Series[bool]:
+    def _get_df_time_mask(self, time_start: datetime|None = None, time_stop: datetime|None = None) -> pd.Series:
         if time_start is None and time_stop is None:
-            mask: pd.Series[bool] = pd.Series(True, index=self.df.index)
+            mask: pd.Series = pd.Series(True, index=self.df.index, dtype=bool)
         elif time_stop is None:
-            mask = pd.Series(self.df.index > time_start, dtype=bool)
+            mask = pd.Series(self.df.index > time_start, index=self.df.index, dtype=bool)
         else:
-            mask = pd.Series((self.df.index > time_start) & (self.df.index < time_stop), dtype=bool)
+            mask = pd.Series((self.df.index > time_start) & (self.df.index < time_stop), index=self.df.index, dtype=bool)
         return mask
 
     def set_ticker_timeline(self, time_start: datetime, time_stop: datetime|None = None) -> None:
@@ -29,6 +28,9 @@ class DataEDA():
             self.df = self.df[self.df.index > time_start]
         else:
             self.df = self.df[self.df.index > time_start and self.df.index < time_stop]
+
+    def get_feature_description(self, feature_name: str) -> None:
+        print(self._featureEngineer._instance_descriptions[feature_name])
 
     def get_ticker_dataframe(self) -> pd.DataFrame:
         return self.df
