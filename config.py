@@ -3,6 +3,8 @@ from const import DATABASE_TYPE
 import yaml
 from dotenv import load_dotenv
 import os
+import logging.config
+
 
 class DatabaseConfig(BaseModel):
     ...
@@ -24,6 +26,8 @@ class RedisConfig(DatabaseConfig):
 def get_config(databaseType: DATABASE_TYPE) -> DatabaseConfig:
     with open("config.yaml", "r") as f:
         config = yaml.safe_load(f)
+
+    logging.config.dictConfig(config["logging_config"])
 
     match databaseType:
         case DATABASE_TYPE.SQLITE:
