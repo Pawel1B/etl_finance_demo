@@ -12,3 +12,30 @@ database:
   redis:
     host: localhost
     port: 6379
+
+
+logging_config:
+  version: 1
+  formatters:
+      standard:
+          format: "%(asctime)s [%(levelname)s] %(name)s %(filename)s: %(message)s"
+  handlers:
+    console:
+      class: logging.StreamHandler
+      formatter: standard
+      level: INFO
+    file:
+      class: logging.FileHandler
+      formatter: standard
+      filename: logs/app.log
+      level: DEBUG
+    rotating_file:
+      class: logging.handlers.RotatingFileHandler
+      formatter: standard
+      filename: logs/app_rotating.log
+      maxBytes: 5242880
+      backupCount: 2
+      level: WARNING
+  root:
+    handlers: [console, file, rotating_file]
+    level: DEBUG

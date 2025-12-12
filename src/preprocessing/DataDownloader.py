@@ -2,7 +2,7 @@ import requests
 from const import DATA_DOWNLOAD_SOURCE
 from http import HTTPStatus
 import logging
-logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 
 class DataDownloader:
@@ -16,11 +16,14 @@ class DataDownloader:
             url = f"https://stooq.pl/q/d/l/?s={stock_name}&i=d"
             response = requests.get(url)
             if response.status_code == HTTPStatus.OK:
-                logging.info(f"Stock returned {stock_name}")
+                logger.info(f"Stock returned {stock_name}")
 
                 return response.text
             else:
-                raise RuntimeError(
-                    f"There is an issue with request, check status of service or ticker: {stock_name}")
+                msg = f"There is an issue with request, check status of service or ticker: {stock_name}"
+                logger.error(msg)
+                raise RuntimeError(msg)
         else:
-            raise ValueError(f"Mentioned data download resource not supported: {self.dataDownloadSource}")
+            msg = f"There is an issue with request, check status of service or ticker: {stock_name}"
+            logger.error(msg)
+            raise ValueError(msg)
