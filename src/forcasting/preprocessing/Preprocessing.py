@@ -1,14 +1,14 @@
 from abc import ABC, abstractmethod
-import pandas as pd
+import numpy as np
 from typing import Any
 
 
 class Preprocessing(ABC):
 
     @abstractmethod
-    def fit(self, df: pd.DataFrame) -> None:
+    def fit(self, x_data: np.array) -> None:
         ...
 
     @abstractmethod
-    def transform(self, df: pd.DataFrame) -> Any:
+    def transform(self, x_data: np.array) -> Any:
         ...

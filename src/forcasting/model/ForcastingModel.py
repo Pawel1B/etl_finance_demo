@@ -1,20 +1,20 @@
 from abc import ABC, abstractmethod
-import pandas as pd
+from typing import Any
 import numpy as np
 
 
 class ForcastingModel(ABC):
 
     @abstractmethod
-    def train_model(self, train_data: pd.DataFrame) -> None:
+    def train_model(self, train_data: list) -> None:
         ...
 
     @abstractmethod
-    def test_model(self, test_data: pd.DataFrame) -> None:
+    def test_model(self, test_data: list) -> None:
         ...
 
     @abstractmethod
-    def predict(self) -> np.array:
+    def predict(self, data: Any) -> np.array:
         ...
 
     @abstractmethod
