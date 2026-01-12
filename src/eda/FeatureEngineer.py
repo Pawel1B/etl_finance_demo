@@ -129,4 +129,4 @@ class FeatureEngineer:
     def handle_nan_values(self, method: str = "dropna") -> None:
         """Handle nan values in dataframe based on method"""
         if method == "dropna":
-            self.df = self.df.dropna()
+            self.df.dropna(inplace=True)
